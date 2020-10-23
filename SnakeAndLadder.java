@@ -17,7 +17,7 @@ public class SnakeAndLadder {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
-    //Function to give option 1) No Play, 2) Ladder & 3) Snake
+    //Function to give option like 1) No Play, 2) Ladder & 3) Snake
     public static int Play_Option() {
         final int min = 1;
         final int max = 3;
@@ -39,13 +39,15 @@ public class SnakeAndLadder {
                 case 2:
                     System.out.println("Put a smile on your face!! You got a Ladder.");
                     playerOne += diceFaceNumber;
+                    if (playerOne > 100) {
+                        System.out.println("Oops!! You went too far.");
+                        playerOne -= diceFaceNumber;
+                    }
                     break;
                 case 3:
                     System.out.println("So Sad!! You were eaten by a Snake.");
                     if (playerOne > 0) {
                         playerOne -= diceFaceNumber;
-                    } else {
-                        ;;
                     }
                     break;
                 default:
