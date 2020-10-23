@@ -26,8 +26,11 @@ public class SnakeAndLadder {
 
     public static void main(String[] args) {
         int playerOne = 0;
+        int dicePlayed = 0;
+
         while (true) {
             int diceFaceNumber = Roll_Dice();
+            dicePlayed++;
             int playOption = Play_Option();
             System.out.println("You have got " + diceFaceNumber);
 
@@ -46,7 +49,10 @@ public class SnakeAndLadder {
                     break;
                 case 3:
                     System.out.println("So Sad!! You were eaten by a Snake.");
-                    if (playerOne > 0) {
+                    int num = playerOne - diceFaceNumber;
+                    if (num < 0) {
+                        ;;
+                    } else {
                         playerOne -= diceFaceNumber;
                     }
                     break;
@@ -58,6 +64,7 @@ public class SnakeAndLadder {
             if (playerOne < 100) {
                 continue;
             } else {
+                System.out.println("Dice Played "+dicePlayed+" times.");
                 break;
             }
         }
