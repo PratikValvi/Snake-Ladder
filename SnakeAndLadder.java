@@ -25,16 +25,23 @@ public class SnakeAndLadder {
     }
 
     public static void main(String[] args) {
-        int playerOne = 0;
-        int dicePlayed = 0;
+        int playerOne = 0;          //Player1 Position
+        int playerTwo = 0;          //Player2 Posotion
+        int dicePlayed_p1 = 0;      //Count of Player1 Dice played
+        int dicePlayed_p2 = 0;      //Count of Player2 Dice played
+        int diceFaceNumber = 0;     //Dice Face Number from 1 to 6
+        int playOption = 0;         //Play Option from 1 to 3
 
         while (true) {
-            int diceFaceNumber = Roll_Dice();
-            dicePlayed++;
-            int playOption = Play_Option();
+            System.out.println();
+            System.out.println("Player 1's Turn.");
+            //Computing Dice Face Number & Play Option for Player1
+            diceFaceNumber = Roll_Dice();
+            dicePlayed_p1++;
+            playOption = Play_Option();
             System.out.println("You have got " + diceFaceNumber);
 
-            //Check for Option using Switch Case
+            //Check for Player1 Option using Switch Case
             switch (playOption) {
                 case 1:
                     System.out.println("Sorry!! No Play.");
@@ -42,6 +49,7 @@ public class SnakeAndLadder {
                 case 2:
                     System.out.println("Put a smile on your face!! You got a Ladder.");
                     playerOne += diceFaceNumber;
+                    //Check if Players Position is going beyond 100 if yes prevent it from happening.
                     if (playerOne > 100) {
                         System.out.println("Oops!! You went too far.");
                         playerOne -= diceFaceNumber;
@@ -49,6 +57,7 @@ public class SnakeAndLadder {
                     break;
                 case 3:
                     System.out.println("So Sad!! You were eaten by a Snake.");
+                    //Check if Players Position is going below 0 if yes prevent it from happening.
                     int num = playerOne - diceFaceNumber;
                     if (num < 0) {
                         ;;
@@ -59,12 +68,55 @@ public class SnakeAndLadder {
                 default:
                     System.out.println("Something went wrong");
             }
-            System.out.println("Your Position is at " + playerOne);
+            System.out.println("Player 1's position is at " + playerOne);
             System.out.println();
-            if (playerOne < 100) {
-                continue;
-            } else {
-                System.out.println("Dice Played "+dicePlayed+" times.");
+
+            System.out.println("Player 2's Turn.");
+            //Computing Dice Face Number & Play Option for Player2
+            diceFaceNumber = Roll_Dice();
+            dicePlayed_p2++;
+            playOption = Play_Option();
+            System.out.println("You have got " + diceFaceNumber);
+
+            //Check for Player2 Option using Switch Case
+            switch (playOption) {
+                case 1:
+                    System.out.println("Sorry!! No Play.");
+                    break;
+                case 2:
+                    System.out.println("Put a smile on your face!! You got a Ladder.");
+                    playerTwo += diceFaceNumber;
+                    //Check if Players Position is going beyond 100 if yes prevent it from happening.
+                    if (playerTwo > 100) {
+                        System.out.println("Oops!! You went too far.");
+                        playerTwo -= diceFaceNumber;
+                    }
+                    break;
+                case 3:
+                    System.out.println("So Sad!! You were eaten by a Snake.");
+                    //Check if Players Position is going below 0 if yes prevent it from happening.
+                    int num = playerTwo - diceFaceNumber;
+                    if (num < 0) {
+                        ;;
+                    } else {
+                        playerTwo -= diceFaceNumber;
+                    }
+                    break;
+                default:
+                    System.out.println("Something went wrong");
+            }
+            System.out.println("Player 2's position is at " + playerTwo);
+
+            if (playerOne == 100 || playerTwo == 100){
+                if (playerOne == 100) {
+                    System.out.println();
+                    System.out.println("Congratulations!! Player1 has won this round");
+                    System.out.println("Player1 played Dice for "+dicePlayed_p1+" times.");
+                } else {
+                    System.out.println();
+                    System.out.println("Congratulations!! Player2 has won this round");
+                    System.out.println("Player2 played Dice for "+dicePlayed_p2+" times.");
+                }
                 break;
             }
         }
